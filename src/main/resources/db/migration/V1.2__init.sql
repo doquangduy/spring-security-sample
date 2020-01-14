@@ -1,0 +1,1 @@
+insert into USER_PERMISSION(ID, USER_ID, PERMISSION_ID) values (1, 1, 1), (2, 2, 2);

@@ -1,0 +1,484 @@
+-- MySQL dump 10.17  Distrib 10.3.17-MariaDB, for Linux (x86_64)
+--
+-- Host: 127.0.0.1    Database: doma_demo
+-- ------------------------------------------------------
+-- Server version	8.0.18
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `COMMANDS`
+--
+
+DROP TABLE IF EXISTS `COMMANDS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `COMMANDS` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DELETED` tinyint(1) NOT NULL DEFAULT '0',
+  `VERSION` int(11) NOT NULL DEFAULT '1',
+  `CREATED_BY` bigint(20) NOT NULL,
+  `CREATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `LAST_UPDATED_BY` bigint(20) NOT NULL,
+  `LAST_UPDATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `COMMANDS`
+--
+
+LOCK TABLES `COMMANDS` WRITE;
+/*!40000 ALTER TABLE `COMMANDS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `COMMANDS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `COMPANIES`
+--
+
+DROP TABLE IF EXISTS `COMPANIES`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `COMPANIES` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `CODE` varchar(20) COLLATE utf8mb4_vi_0900_ai_ci NOT NULL,
+  `NAME` varchar(1000) COLLATE utf8mb4_vi_0900_ai_ci NOT NULL,
+  `DESCRIPTION` text COLLATE utf8mb4_vi_0900_ai_ci,
+  `DELETED` tinyint(1) NOT NULL DEFAULT '0',
+  `VERSION` int(11) NOT NULL DEFAULT '1',
+  `CREATED_BY` bigint(20) NOT NULL,
+  `CREATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `LAST_UPDATED_BY` bigint(20) NOT NULL,
+  `LAST_UPDATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `COMPANIES_CODE_uindex` (`CODE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `COMPANIES`
+--
+
+LOCK TABLES `COMPANIES` WRITE;
+/*!40000 ALTER TABLE `COMPANIES` DISABLE KEYS */;
+/*!40000 ALTER TABLE `COMPANIES` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `COMPANIES_OFFICES`
+--
+
+DROP TABLE IF EXISTS `COMPANIES_OFFICES`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `COMPANIES_OFFICES` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `COMPANY_ID` bigint(20) NOT NULL,
+  `OFFICE_ID` bigint(20) NOT NULL,
+  `DELETED` tinyint(1) NOT NULL DEFAULT '0',
+  `VERSION` int(11) NOT NULL DEFAULT '1',
+  `CREATED_BY` bigint(20) NOT NULL,
+  `CREATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `LAST_UPDATED_BY` bigint(20) NOT NULL,
+  `LAST_UPDATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `COMPANIES_OFFICES`
+--
+
+LOCK TABLES `COMPANIES_OFFICES` WRITE;
+/*!40000 ALTER TABLE `COMPANIES_OFFICES` DISABLE KEYS */;
+/*!40000 ALTER TABLE `COMPANIES_OFFICES` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `DRIVERS`
+--
+
+DROP TABLE IF EXISTS `DRIVERS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `DRIVERS` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `USER_ID` bigint(20) NOT NULL,
+  `STATUS` int(11) NOT NULL,
+  `DESCRIPTION` text COLLATE utf8mb4_vi_0900_ai_ci,
+  `DELETED` tinyint(1) NOT NULL DEFAULT '0',
+  `VERSION` int(11) NOT NULL DEFAULT '1',
+  `CREATED_BY` bigint(20) NOT NULL,
+  `CREATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `LAST_UPDATED_BY` bigint(20) NOT NULL,
+  `LAST_UPDATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `DRIVERS_USER_ID_uindex` (`USER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `DRIVERS`
+--
+
+LOCK TABLES `DRIVERS` WRITE;
+/*!40000 ALTER TABLE `DRIVERS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `DRIVERS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `OFFICES`
+--
+
+DROP TABLE IF EXISTS `OFFICES`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `OFFICES` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(1000) COLLATE utf8mb4_vi_0900_ai_ci NOT NULL,
+  `ADDRESS` text COLLATE utf8mb4_vi_0900_ai_ci,
+  `DESCRIPTION` text COLLATE utf8mb4_vi_0900_ai_ci,
+  `DELETED` tinyint(1) NOT NULL DEFAULT '0',
+  `VERSION` int(11) NOT NULL DEFAULT '1',
+  `CREATED_BY` bigint(20) NOT NULL,
+  `CREATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `LAST_UPDATED_BY` bigint(20) NOT NULL,
+  `LAST_UPDATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `OFFICES`
+--
+
+LOCK TABLES `OFFICES` WRITE;
+/*!40000 ALTER TABLE `OFFICES` DISABLE KEYS */;
+/*!40000 ALTER TABLE `OFFICES` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `PARTNERS`
+--
+
+DROP TABLE IF EXISTS `PARTNERS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `PARTNERS` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DELETED` tinyint(1) NOT NULL DEFAULT '0',
+  `VERSION` int(11) NOT NULL DEFAULT '1',
+  `CREATED_BY` bigint(20) NOT NULL,
+  `CREATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `LAST_UPDATED_BY` bigint(20) NOT NULL,
+  `LAST_UPDATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `PARTNERS`
+--
+
+LOCK TABLES `PARTNERS` WRITE;
+/*!40000 ALTER TABLE `PARTNERS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `PARTNERS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `PERMISSIONS`
+--
+
+DROP TABLE IF EXISTS `PERMISSIONS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `PERMISSIONS` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(255) COLLATE utf8mb4_vi_0900_ai_ci NOT NULL,
+  `CODE` varchar(50) COLLATE utf8mb4_vi_0900_ai_ci NOT NULL,
+  `PERMISSION_TYPE` int(11) NOT NULL,
+  `DESCRIPTION` text COLLATE utf8mb4_vi_0900_ai_ci,
+  `DELETED` tinyint(1) NOT NULL DEFAULT '0',
+  `VERSION` int(11) NOT NULL DEFAULT '1',
+  `CREATED_BY` bigint(20) NOT NULL,
+  `CREATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `LAST_UPDATED_BY` bigint(20) NOT NULL,
+  `LAST_UPDATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `PERMISSIONS_CODE_uindex` (`CODE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `PERMISSIONS`
+--
+
+LOCK TABLES `PERMISSIONS` WRITE;
+/*!40000 ALTER TABLE `PERMISSIONS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `PERMISSIONS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ROUTES`
+--
+
+DROP TABLE IF EXISTS `ROUTES`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ROUTES` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DELETED` tinyint(1) NOT NULL DEFAULT '0',
+  `VERSION` int(11) NOT NULL DEFAULT '1',
+  `CREATED_BY` bigint(20) NOT NULL,
+  `CREATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `LAST_UPDATED_BY` bigint(20) NOT NULL,
+  `LAST_UPDATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ROUTES`
+--
+
+LOCK TABLES `ROUTES` WRITE;
+/*!40000 ALTER TABLE `ROUTES` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ROUTES` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `SCHEDULES`
+--
+
+DROP TABLE IF EXISTS `SCHEDULES`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SCHEDULES` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DELETED` tinyint(1) NOT NULL DEFAULT '0',
+  `VERSION` int(11) NOT NULL DEFAULT '1',
+  `CREATED_BY` bigint(20) NOT NULL,
+  `CREATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `LAST_UPDATED_BY` bigint(20) NOT NULL,
+  `LAST_UPDATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `SCHEDULES`
+--
+
+LOCK TABLES `SCHEDULES` WRITE;
+/*!40000 ALTER TABLE `SCHEDULES` DISABLE KEYS */;
+/*!40000 ALTER TABLE `SCHEDULES` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `SHIFTS`
+--
+
+DROP TABLE IF EXISTS `SHIFTS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `SHIFTS` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DELETED` tinyint(1) NOT NULL DEFAULT '0',
+  `VERSION` int(11) NOT NULL DEFAULT '1',
+  `CREATED_BY` bigint(20) NOT NULL,
+  `CREATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `LAST_UPDATED_BY` bigint(20) NOT NULL,
+  `LAST_UPDATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `SHIFTS`
+--
+
+LOCK TABLES `SHIFTS` WRITE;
+/*!40000 ALTER TABLE `SHIFTS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `SHIFTS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `TICKETS`
+--
+
+DROP TABLE IF EXISTS `TICKETS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `TICKETS` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DELETED` tinyint(1) NOT NULL DEFAULT '0',
+  `VERSION` int(11) NOT NULL DEFAULT '1',
+  `CREATED_BY` bigint(20) NOT NULL,
+  `CREATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `LAST_UPDATED_BY` bigint(20) NOT NULL,
+  `LAST_UPDATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `TICKETS`
+--
+
+LOCK TABLES `TICKETS` WRITE;
+/*!40000 ALTER TABLE `TICKETS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `TICKETS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `TIMEKEEPING`
+--
+
+DROP TABLE IF EXISTS `TIMEKEEPING`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `TIMEKEEPING` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DELETED` tinyint(1) NOT NULL DEFAULT '0',
+  `VERSION` int(11) NOT NULL DEFAULT '1',
+  `CREATED_BY` bigint(20) NOT NULL,
+  `CREATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `LAST_UPDATED_BY` bigint(20) NOT NULL,
+  `LAST_UPDATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `TIMEKEEPING`
+--
+
+LOCK TABLES `TIMEKEEPING` WRITE;
+/*!40000 ALTER TABLE `TIMEKEEPING` DISABLE KEYS */;
+/*!40000 ALTER TABLE `TIMEKEEPING` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `TRIPS`
+--
+
+DROP TABLE IF EXISTS `TRIPS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `TRIPS` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `DELETED` tinyint(1) NOT NULL DEFAULT '0',
+  `VERSION` int(11) NOT NULL DEFAULT '1',
+  `CREATED_BY` bigint(20) NOT NULL,
+  `CREATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `LAST_UPDATED_BY` bigint(20) NOT NULL,
+  `LAST_UPDATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `TRIPS`
+--
+
+LOCK TABLES `TRIPS` WRITE;
+/*!40000 ALTER TABLE `TRIPS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `TRIPS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `USERS`
+--
+
+DROP TABLE IF EXISTS `USERS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `USERS` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `USER_CODE` varchar(100) NOT NULL,
+  `USERNAME` varchar(255) NOT NULL,
+  `PASSWORD` varchar(500) NOT NULL,
+  `FIRST_NAME` varchar(255) NOT NULL,
+  `LAST_NAME` varchar(255) NOT NULL,
+  `USER_COMPANY_CODE` varchar(100) NOT NULL,
+  `PHONE_NUMBER` varchar(20) NOT NULL,
+  `EMAIL` varchar(255) DEFAULT NULL,
+  `ENABLED` tinyint(1) NOT NULL DEFAULT '1',
+  `DESCRIPTION` text,
+  `DELETED` tinyint(1) NOT NULL DEFAULT '0',
+  `VERSION` int(11) NOT NULL DEFAULT '1',
+  `CREATED_BY` bigint(20) NOT NULL,
+  `CREATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `LAST_UPDATED_BY` bigint(20) NOT NULL,
+  `LAST_UPDATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `USER_USERNAME_uindex` (`USERNAME`),
+  UNIQUE KEY `USERS_USER_CODE_uindex` (`USER_CODE`)
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `USERS`
+--
+
+LOCK TABLES `USERS` WRITE;
+/*!40000 ALTER TABLE `USERS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `USERS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `VEHICLES`
+--
+
+DROP TABLE IF EXISTS `VEHICLES`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `VEHICLES` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `COMPANY_ID` bigint(20) NOT NULL,
+  `NUMBER_OF_SEATS` int(11) NOT NULL DEFAULT '1',
+  `PHONE_NUMBER` varchar(20) COLLATE utf8mb4_vi_0900_ai_ci NOT NULL,
+  `VEHICLE_TYPE` int(11) NOT NULL,
+  `SEAT_LAYOUT_TYPE` int(11) NOT NULL,
+  `STATUS` int(11) NOT NULL,
+  `DESCRIPTION` text COLLATE utf8mb4_vi_0900_ai_ci,
+  `DELETED` tinyint(1) NOT NULL DEFAULT '0',
+  `VERSION` int(11) NOT NULL DEFAULT '1',
+  `CREATED_BY` bigint(20) NOT NULL,
+  `CREATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `LAST_UPDATED_BY` bigint(20) NOT NULL,
+  `LAST_UPDATED_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vi_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `VEHICLES`
+--
+
+LOCK TABLES `VEHICLES` WRITE;
+/*!40000 ALTER TABLE `VEHICLES` DISABLE KEYS */;
+/*!40000 ALTER TABLE `VEHICLES` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-11-21 17:01:02

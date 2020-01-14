@@ -1,0 +1,49 @@
+logging:
+  file.path: "${java.io.tmpdir}/log"
+  level:
+    org:
+      seasar.doma.jdbc: INFO
+      springframework:
+        web: INFO
+    vn.havaz.transportation: DEBUG
+
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://localhost:3307/demo_security"
+    username: "user_dev"
+    password: "pazzword"
+
+    hikari:
+      connection-timeout: 30000 # 30 seconds
+      maximum-pool-size: 50
+      minimum-idle: 5
+      idle-timeout: 120000 # 2 minutes
+      max-lifetime: 1800000 # 30 minutes
+  resources:
+    cache:
+      cachecontrol:
+        max-age: 15m # 15 minutes
+        cache-private: true
+  http:
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true
+      force-request: true
+      force-response: true
+  jpa:
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    database-platform: com.spring.security.demo.configuration.hibernate.CustomMysql8Dialect
+    properties:
+      hibernate:
+        format_sql: true
+        dialect.storage_engine: innodb
+  flyway:
+    baseline-on-migrate: true
+
